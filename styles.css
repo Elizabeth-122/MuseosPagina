@@ -1,0 +1,500 @@
+/* ======================================================================
+   ESTILOS GENERALES Y RESETEO BÁSICO (GLOBAL RESET)
+   ====================================================================== */
+
+/* El selector universal (*) aplica esta regla a todos los elementos de la página.
+   'box-sizing: border-box' es fundamental: le indica al navegador que el relleno (padding) 
+   y los bordes se sumen *dentro* del ancho establecido, evitando que las cajas se deformen o desborden. */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estructura general de la página utilizando el modelo de diseño Flexbox en el cuerpo (body).
+   - 'display: flex' y 'flex-direction: column' convierten al body en una columna flexible.
+   - 'min-height: 100vh' obliga a que la página ocupe al menos el 100% de la altura visible de la pantalla.
+   Esto permite que el pie de página (footer) se empuje automáticamente hacia abajo aunque haya poco contenido. */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e3ccba; /* Color de fondo general suave para la página */
+    color:#401d0f;               /* Color de texto principal (gris oscuro para lectura cómoda) */
+    line-height: 1.6;          /* Espaciado vertical entre líneas de texto */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* ======================================================================
+   CABECERA PRINCIPAL (HEADER) CON IMAGEN DE FONDO
+   ====================================================================== */
+header {
+    /* Fondo compuesto multicapa: 
+       1. Un degradado lineal (linear-gradient) semitransparente en tonos azules.
+       2. Una imagen de fondo obtenida de internet (Picsum Photos).
+       La combinación garantiza que el texto blanco siempre contraste y sea legible. */
+    background: linear-gradient(135deg, rgba(64, 29, 15, 0.85), rgba(171, 140, 125, 0.85)), 
+            url('https://sic.gob.mx/imagenes_cache/museo_2022_g_63591.png');
+    background-size: cover;     /* Escala la imagen para que cubra todo el ancho y alto del header sin dejar huecos */
+    background-position: center;/* Centra la imagen de fondo para que los puntos focales no se recorten */
+    color: #ffffff;
+    padding: 3.5rem 1rem;       /* Espaciado interno superior/inferior (3.5rem) y laterales (1rem) */
+    text-align: center;         /* Centra todo el contenido de texto horizontalmente */
+}
+
+/* Contenedor interno para limitar el ancho del texto dentro de la cabecera */
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;             /* Centra el bloque horizontalmente al dejar márgenes automáticos a los lados */
+}
+
+header h1 {
+    font-size: 2.5rem;          /* Tamaño grande y destacado para el título principal */
+    margin-bottom: 0.5rem;      /* Espacio inferior de separación respecto al párrafo */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra suave detrás de las letras para dar relieve */
+}
+
+header p {
+    font-size: 1.2rem;          /* Tamaño de subtítulo */
+    opacity: 0.95;              /* Ligera transparencia para suavizar el impacto visual */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+
+/* ======================================================================
+   MENÚ DE NAVEGACIÓN (NAV) - MODELO FLEXBOX
+   ====================================================================== */
+nav {
+    background-color: #401d0f;  /* Color azul marino oscuro institucional */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil inferior para separar visualmente el menú del contenido */
+    position: sticky;           /* Posicionamiento pegajoso: el menú fluye normalmente hasta que... */
+    top: 0;                     /* ...llega arriba de la ventana, momento en el cual se fija al hacer scroll */
+    z-index: 100;               /* Control de apilamiento: asegura que el menú flote por encima de videos o imágenes */
+}
+
+nav ul {
+    list-style: none;           /* Elimina las viñetas o puntos predeterminados de la lista desordenada */
+    display: flex;              /* Convierte los elementos de la lista en una fila horizontal flexible */
+    justify-content: center;    /* Centra los elementos de la lista horizontalmente */
+    flex-wrap: wrap;            /* Permite que los botones del menú bajen de renglón si la pantalla es muy estrecha */
+}
+
+nav ul li a {
+    display: block;             /* Convierte el enlace en un bloque para que toda el área sea clickeable */
+    color: #ffffff;
+    padding: 1rem 1.5rem;       /* Relleno interno amplio para una zona táctil cómoda */
+    text-decoration: none;      /* Quita el subrayado predeterminado de los hipervínculos */
+    font-weight: 600;           /* Texto seminegrilla para mayor claridad */
+    transition: background-color 0.3s ease; /* Transición animada de 0.3 segundos al cambiar de color */
+}
+
+nav ul li a:hover {
+    background-color: #f78b39;  /* Color de fondo que adquiere el botón al pasar el mouse por encima */
+}
+
+
+/* ======================================================================
+   CONTENEDOR PRINCIPAL (MAIN) - MODELO CSS GRID Y DISEÑO RESPONSIVO
+   ====================================================================== */
+main {
+    max-width: 1200px;          /* Ancho máximo que puede alcanzar el contenedor en pantallas grandes */
+    margin: 2rem auto;          /* Centra el contenedor con un margen superior/inferior de 2rem */
+    padding: 0 1rem;            /* Espaciado lateral para evitar que pegue con las orillas en celulares */
+    width: 100%;
+    display: grid;              /* Utiliza CSS Grid para organizar la distribución de la página en columnas */
+    /* Crea un diseño de dos columnas: 
+       1. La primera columna (1fr) es flexible y toma todo el espacio restante para los artículos.
+       2. La segunda columna (320px) tiene un ancho fijo para la barra lateral (aside). */
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;                  /* Espacio exacto de separación horizontal y vertical entre columnas */
+    flex: 1;                    /* Hace que el main crezca y ocupe el espacio disponible en la pantalla */
+}
+
+/* Media Query (Diseño Adaptable): Se ejecuta automáticamente cuando la pantalla mide 900px o menos */
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr; /* Cambia de dos columnas en paralelo a una sola columna apilada */
+    }
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #1c100b;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid #2a5298; /* Línea decorativa azul debajo del título de la sección */
+    padding-bottom: 0.5rem;         /* Espacio entre el texto y la línea decorativa */
+}
+
+/* Cada etiqueta <article> funciona como una "tarjeta" independiente que agrupa un tema */
+article {
+    background-color: #ab8c7d;
+    padding: 2rem;              /* Espacio interno generoso alrededor del contenido del artículo */
+    border-radius: 8px;         /* Esquinas ligeramente redondeadas */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Sombra muy tenue para dar efecto de tarjeta flotante */
+    margin-bottom: 2rem;        /* Separación vertical entre un artículo y otro */
+}
+
+article header {
+    background: none;           /* Anula los estilos de fondo heredados del header principal */
+    color: #ffebe3;
+    padding: 0;
+    text-align: left;           /* Alinea los títulos internos de los artículos a la izquierda */
+    margin-bottom: 1rem;
+}
+
+article header h2 {
+    font-size: 1.5rem;
+    color:#ffebe3;
+}
+
+article header p {
+    font-size: 0.85rem;
+    color: #ffebe3;
+}
+
+article p {
+    margin-bottom: 1.5rem;      /* Espaciado inferior para los párrafos de texto explicativo */
+}
+
+
+/* ======================================================================
+   ESTILOS ESPECÍFICOS PARA CONTENIDO INCRUSTADO
+   ====================================================================== */
+.embed-box {
+    background: #fafafa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 1rem;              /* Marco contenedor estético para imágenes y videos individuales */
+}
+
+/* REGLA DE ORO RESPONSIVA: Garantiza que cualquier recurso multimedia incrustado 
+   se adapte automáticamente al ancho de la pantalla y nunca rompa el diseño. */
+img, video, iframe, embed, object, canvas, svg {
+    max-width: 100%;            /* Ningún elemento puede ser más ancho que su contenedor */
+    height: auto;               /* La altura se ajusta de forma proporcional */
+    display: block;             /* Convierte los elementos en bloque para evitar espacios fantasma inferiores */
+    border-radius: 4px;
+}
+
+iframe {
+    width: 100%;
+    height: 250px;
+    border: 0;                  /* Elimina el borde predeterminado de los iframes */
+}
+
+canvas {
+    background-color: #ffffff;
+    border: 1px dashed #ccc;    /* Borde punteado decorativo para áreas de dibujo interactivo */
+}
+
+/* Contenedor responsivo especializado para videos de YouTube (Proporción 16:9) */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;     /* Truco CSS: El 56.25% equivale exactamente a una relación de aspecto 16:9 */
+    height: 0;                  /* La altura se controla completamente mediante el padding superior/inferior */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.video-container iframe {
+    position: absolute;         /* Posiciona el iframe de forma absoluta cubriendo todo el contenedor */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.podcast-container {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+
+/* ======================================================================
+   BLOQUE CSS INDEPENDIENTE 1: CARRUSEL EN CSS PURO (.css-carousel)
+   ====================================================================== */
+.css-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 1.5rem auto 0 auto; /* Centra el carrusel horizontalmente */
+    border-radius: 8px;
+    overflow: hidden;           /* Oculta las partes de las imágenes que salgan del contenedor redondeado */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: #000;     /* Fondo negro de respaldo */
+}
+
+.css-carousel-track {
+    display: flex;              /* Coloca las diapositivas una al lado de la otra en fila horizontal */
+    overflow-x: auto;           /* Habilita el desplazamiento horizontal con scroll */
+    scroll-snap-type: x mandatory; /* Fuerza magnética: al deslizar, el scroll se detiene exactamente al inicio de cada foto */
+    scroll-behavior: smooth;    /* Hace que la transición al hacer clic en los números sea suave y animada */
+    scrollbar-width: none;      /* Oculta la barra de desplazamiento en Firefox */
+}
+
+.css-carousel-track::-webkit-scrollbar { 
+    display: none;              /* Oculta la barra de desplazamiento en Chrome, Safari y Edge */
+}
+
+.css-slide {
+    flex: 0 0 100%;             /* Evita que la diapositiva se encoja y fija su ancho exactamente al 100% */
+    width: 100%;
+    scroll-snap-align: start;   /* Define el punto exacto donde se anclará magnéticamente la diapositiva */
+}
+
+.css-slide img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;          /* Recorta la imagen de manera inteligente para llenar el espacio sin deformarse */
+    display: block;
+}
+
+.css-carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;                  /* Espacio de separación entre los botones numéricos */
+    padding: 10px;
+    background-color: rgba(30, 60, 114, 0.9); /* Barra inferior translúcida contenedora de los números */
+}
+
+.css-carousel-nav a {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.css-carousel-nav a:hover {
+    background-color: #2a5298;  /* Color al pasar el cursor sobre los números de navegación */
+}
+
+
+/* ======================================================================
+   BLOQUE CSS INDEPENDIENTE 2: CARRUSEL MANUAL CON JS (.js-manual-carousel)
+   ====================================================================== */
+.js-manual-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 1.5rem auto 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: #000;
+}
+
+.js-manual-track {
+    position: relative;         /* Permite contener elementos con posición absoluta en su interior */
+    width: 100%;
+    height: 300px;              /* Altura fija estandarizada para el área visual de las diapositivas */
+}
+
+.js-manual-slide {
+    position: absolute;         /* Superpone todas las imágenes exactamente en la misma coordenada (una encima de otra) */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;                 /* Las diapositivas inician totalmente transparentes (invisibles) */
+    visibility: hidden;         /* Oculta los elementos para que no reciban clics ni interfieran */
+    /* Transición de opacidad y visibilidad de 0.8 segundos para lograr el efecto de desvanecimiento (Fade) */
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+/* Clase que JavaScript activa y desactiva dinámicamente para mostrar la imagen actual */
+.js-manual-slide.active {
+    opacity: 1;                 /* La imagen se vuelve completamente visible */
+    visibility: visible;
+}
+
+.js-manual-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          /* Asegura que la foto cubra el espacio manteniendo sus proporciones */
+    display: block;
+}
+
+/* Botones flotantes laterales (Anterior / Siguiente) */
+.js-manual-btn {
+    position: absolute;
+    top: 50%;                   /* Ubica el botón exactamente a la mitad de la altura del contenedor */
+    transform: translateY(-50%);/* Corrección matemática para centrar verticalmente el botón por completo */
+    background-color: rgba(30, 60, 114, 0.7); /* Azul semitransparente elegante */
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;            /* Cambia el cursor a una manita interactiva */
+    font-size: 1.2rem;
+    border-radius: 4px;
+    z-index: 10;                /* Asegura que los botones floten siempre por encima de las imágenes */
+    transition: background-color 0.3s ease;
+}
+
+.js-manual-btn:hover { 
+    background-color: rgba(30, 60, 114, 1); /* Se vuelve totalmente opaco al pasar el mouse */
+}
+.js-manual-btn.prev { 
+    left: 10px;                 /* Ancla el botón de retroceso al margen izquierdo */
+}
+.js-manual-btn.next { 
+    right: 10px;                /* Ancla el botón de avance al margen derecho */
+}
+
+
+/* ======================================================================
+   BLOQUE CSS INDEPENDIENTE 3: CARRUSEL AUTOMÁTICO (.auto-carousel)
+   (Comparte la misma arquitectura visual del carrusel manual con JS)
+   ====================================================================== */
+.auto-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 1.5rem auto 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: #000;
+}
+
+.auto-carousel-track {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.auto-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+.auto-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.auto-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.auto-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(30, 60, 114, 0.7);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.auto-carousel-btn:hover { 
+    background-color: rgba(30, 60, 114, 1); 
+}
+
+.auto-carousel-btn.prev { 
+    left: 10px; 
+}
+
+.auto-carousel-btn.next { 
+    right: 10px; 
+}
+
+/* ======================================================================
+   CONTENEDOR RESPONSIVO PARA MAPAS INTERACTIVOS
+   ====================================================================== */
+.map-container {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    background-color: #e1e4e8;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 350px;
+    display: block;
+    border: 0;
+}
+
+
+/* ======================================================================
+   BARRA LATERAL (ASIDE) Y PIE DE PÁGINA (FOOTER)
+   ====================================================================== */
+aside {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    height: fit-content;        /* Impide que el aside se estire de más; su altura se ajusta a su texto interno */
+}
+
+aside h3 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+aside p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+footer {
+    background-color:#1a0e09;  /* Color negro carbón institucional para el pie de página */
+    color: #f7cfb0;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: auto;           /* Empuja el footer hacia el fondo absoluto gracias al Flexbox del body */
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+footer address {
+    font-style: normal;         /* Elimina la inclinación o cursiva por defecto de la etiqueta semántica <address> */
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+footer address a {
+    color: #58a6ff;             /* Color azul claro brillante para los enlaces de correo */
+    text-decoration: none;
+}
+
+footer address a:hover {
+    text-decoration: underline; /* Subraya el enlace al colocar el cursor encima */
+}
+
+
+/* Este código solo afectará al cuadro del Museo de Morelos */
+.embed-box-morelos {
+    background-color: #ffffff; 
+    height: auto !important;   /* Hace que este cuadro específico crezca con el texto largo */
+    padding: 20px;             
+    border-radius: 8px;        
+    box-sizing: border-box;    
+}

@@ -1,0 +1,329 @@
+<!--
+  ======================================================================
+  INSTITUCIÓN: CBTis 166 Pablo Torres Burgos
+  ----------------------------------------------------------------------
+  * Estudiante: López Acosta Elizabeth
+  * Grupo: 3B PRO VESP  
+  * Actividad: Práctica Contenido Incrustado en HTML5 (Actividad 2)
+  * Fecha de entrega: 07 de octubre de 2026
+  ----------------------------------------------------------------------
+  * Descripción técnica del código:
+    - Integra múltiples variantes de contenido incrustado 
+      (imágenes locales/externas, videos nativos y de YouTube, audios y streaming).
+    - Implementa tres tipos de carruseles independientes y desacoplados 
+      (CSS puro, JavaScript manual y JavaScript automático con temporizador).
+    - Aplica diseño responsivo avanzado utilizando maquetación moderna con Flexbox y CSS Grid.
+    - Incorpora dinamismo en tiempo real mediante la inyección automática de la fecha actual con JavaScript.
+  ====================================================================== -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museos</title>
+    <!-- Vinculación de la hoja de estilos externa -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- 1. CABECERA PRINCIPAL (HEADER) -->
+    <header>
+        <div class="header-content">
+            <h1>Museos</h1>
+            <p>Aprende más del lo que nos rodea</p>
+        </div>
+    </header>
+
+    <!-- 2. MENÚ DE NAVEGACIÓN (NAV) -->
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#articulos">Artículos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- 3. CONTENEDOR PRINCIPAL (MAIN) -->
+    <main id="inicio">
+        
+        <section id="articulos">
+            <h2 class="section-title">Existen museos con cosas sorprendentes e interesantes</h2>
+      
+            <!-- Artículo 1: Imagen externa -->
+            <article>
+                <header>
+                    <h2>1.Museo de ciencias de morelos</h2>
+                </header>
+                <p>Es un increíble espacio interactivo y de divulgación científica enfocado principalmente en las infancias, jóvenes y familias.</p>
+                <p>El Museo de Ciencias de Morelos acerca la tecnología y la innovación a visitantes de todas las edades a través de exposiciones interactivas. <small>(Nota: Consulta sus horarios y talleres familiares de fin de semana antes de tu visita).</small></p>
+                <div class="embed-box">
+                    <img src="img/museomorelos.jpg"> 
+                     <figcaption>Imagen del Museo de Ciencias de Morelos</figcaption> 
+                </div>
+            </article>
+
+            <article>
+                <header>
+                    <h2>Museo de ciencias de Morelos</h2>
+                    <p>todo lo que puedes encontrar</p>
+                </header>
+                
+                <p>El Museo de Ciencias de Morelos cuenta con distintas salas que puedes explorar <code>&lt;li&gt;</code>:</p>
+                
+                <div class="embed-box-morelos">
+                    <p><strong>las salas que podras encontrar son:</strong></p>
+                    <ul> <!-- Lista desordenada estándar (Bullet points) -->
+                        <li>Sala del Agua:Explora las características físico-químicas del agua, la cantidad de líquido en la Tierra y en el espacio, la hidrografía del estado de Morelos y medidas para su cuidado</li>
+                        <li>Sala de Energía: Presenta equipos interactivos para conocer las diferentes formas de energía que existen en la naturaleza.</li>
+                        <li>Sala de la Vida: Dedicada a la biología, la historia de la Tierra, el origen de la vida, la evolución humana, los dinosaurios y observación con microscopios.</li>
+                        <li>Sala de Astronáutica: Enfocada en la exploración espacial, la historia de la carrera y tecnología aeroespacial, constelaciones y planetas.</li>
+                        
+                    </ul>
+                    <br>
+                                    </div>
+            </article>
+            <!-- Artículo 2: Imagen local -->
+            <article>
+                <header>
+
+                    <h2>2. Museo Nacional de Antropología CDMX</h2>
+                </header>
+                <p>Ubicado en el corazón del <b>Bosque de Chapultepec</b>, Resguarda una colosal colección dividida en dos grandes temáticas distribuidas en sus dos plantas:La arqueología y la Etnografía</p>
+                <div class="embed-box">
+                    <img src="img/MuseoCDMX.jpg"alt="Foto MuseoCDMX"> 
+                     <figcaption>Imagen del Museo de Antropología (CDMX)</figcaption> 
+                </div>
+            </article>
+
+ <article>
+                <header>
+                    <h2>Pablo Picasso:</h2>
+                   
+                </header>
+                
+                <div class="embed-box">
+                    <!-- blockquote indica una cita extensa de otra fuente -->
+                    <blockquote cite="https://www.eniun.com">
+                       «Dadme un museo, yo os lo lleno».
+                    </blockquote>
+                </div>
+            </article>
+            <!-- Artículo 3: Video local -->
+            <article>
+                <header>
+                    <h2>Museo de Ciencias de Morelos</h2>
+                </header>
+                <p>Conoce este museo de Ciencias</p>
+                <div class="embed-box">
+                    <video src= "audioyvideo/museocienciasmorelos.mp4"
+                    controls preload="metadata"></video>
+                </div>
+            </article>
+
+            <!-- Artículo 4: Video de YouTube -->
+            <article>
+                <header>
+                    <li>Museo Nacional de Antropologia (<abbr title="Ciudad de México">CDMX</abbr>)</li>
+                </header>
+                <p>conoce sus salas y aprende más .</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/6Iw1cDxgoSQ?si=OEbsrd5rMPlyxlBk"
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <!-- Artículo 5: Audio nativo -->
+            <article>
+                <header>
+                    <h2>En este audio escucharas una opinión de la importancia de los museos</h2>
+                </header>
+                <p>La comunicóloga y gestora cultural Mericia Morales Curiel comparte su reflexión sobre el <u>valor fundamental de los museos</u>.</p>
+                <div class="embed-box">
+                    <audio src="audioyvideo/importanciadelosmuseos.mp3" controls></audio>
+                    <p>Mericia Morales Curiel mencionó: <q>"Para mí los museos son unidades de almacenamiento histórico, pero también de almacenamiento futuro, fuentes de inspiración y de innovación"</q></p>
+                </div>
+            </article>
+
+            <!-- Artículo 6: Podcast Spotify -->
+            <article>
+                <header>
+                    <h2>Conoce la importancia de los Museos</h2>
+                    <p>Publicado el: <time datetime="2026-10-06">6 de octubre de 2026</time></p>
+                </header>
+                <p>Escucha el siguiente Podcast</p>
+                <div class="podcast-container">
+                    <iframe style="border-radius:12px" 
+                            src="https://open.spotify.com/embed/episode/7KS1boXKj1wxGp5PNUllyg"
+                            width="100%" 
+                            height="152" 
+                            frameBorder="0" 
+                            allowfullscreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                    </iframe>
+                </div>
+            </article>
+
+            <!-- Artículo 7: Página externa -->
+            <article>
+                <header>
+                    <h2>Aprende de la importancia de los museos</h2>
+                </header>
+                <p>Los museos son los guardianes de nuestra memoria colectiva. Más allá de exhibir objetos, <mark style="background-color: #fc7244;">estos espacios investigan, conservan y protegen el patrimonio cultural y científico de la humanidad</mark>. Sin ellos, perderíamos el hilo conductor de nuestra propia historia.</p>
+                <div class="embed-box">
+                    <iframe 
+                    src="https://evemuseografia.com/2025/03/07/la-importancia-de-los-museos-trasciende-el-tiempo/" title="Ejemplo de página web externa"></iframe>
+                </div>
+            </article>
+
+            <!-- ==========================================
+                 ARTÍCULO 8: Carrusel en CSS Puro (Independiente)
+                 ========================================== -->
+            <article>
+                <header>
+                    <h2>¿Alguna vez has visitado un museo?</h2>
+                </header>
+                <p><i>El arte, la historia y la ciencia cobran vida a través de tus ojos</i>. Las imágenes que ves aquí son solo una ventana a los miles de mundos que resguardan los museos del planeta. Si alguna vez has visitado uno, sabes que cada pasillo cuenta una historia diferente.</p>
+                
+                <!-- Contenedor exclusivo con clase .css-carousel -->
+                <div class="css-carousel">
+                    <div class="css-carousel-track">
+                        <div class="css-slide" id="css-slide-1">
+                            <img src="https://th.bing.com/th/id/OIP.bOB9FA21Ss5XSbi-TMayLwHaFe?w=255&h=190&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Paisaje natural 1">
+                        </div>
+                        <div class="css-slide" id="css-slide-2">
+                            <img src="https://descubreenmexico.com/wp-content/uploads/2022/05/Ven-y-visita-alguno-de-estos-museos-en-la-CDMX-en-el-Dia-Internacional-de-los-Museos.jpg" alt="Paisaje natural 2">
+                        </div>
+                        <div class="css-slide" id="css-slide-3">
+                            <img src="https://tse1.mm.bing.net/th/id/OIP.6Gwk3Ps9x9BtWzxbqrOkuQHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Paisaje natural 3">
+                        </div>
+                    </div>
+                    <div class="css-carousel-nav">
+                        <a href="#css-slide-1">1</a>
+                        <a href="#css-slide-2">2</a>
+                        <a href="#css-slide-3">3</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ==========================================
+                 ARTÍCULO 9: Carrusel Manual con JS (Independiente)
+                 ========================================== -->
+            <article>
+                <header>
+                    <h2>Conoce más de los museos</h2>
+                </header>
+                <p>Aprende de su importancia y descubre cosas nuevas</p>
+                
+                <!-- Contenedor exclusivo con clase .js-manual-carousel -->
+                <div class="js-manual-carousel">
+                    <div class="js-manual-track">
+                        <div class="js-manual-slide active">
+                            <img src="https://tse2.mm.bing.net/th/id/OIP.pZGfWcTuBm-NuDCOek1sgQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bosque 1">
+                        </div>
+                        <div class="js-manual-slide">
+                            <img src="https://www.revista.unam.mx/vol.15/num3/art15/img/img13.jpg" alt="Bosque 2">
+                        </div>
+                        <div class="js-manual-slide">
+                            <img src="https://tse1.mm.bing.net/th/id/OIP.K-hdwLHAq3Wb4ieEJkgA7AHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bosque 3">
+                        </div>
+                    </div>
+                    <button class="js-manual-btn prev" onclick="cambiarSlideManual(-1)">&#10094;</button>
+                    <button class="js-manual-btn next" onclick="cambiarSlideManual(1)">&#10095;</button>
+                </div>
+
+                
+                <div class="embed-box">
+                    <!-- <div> actúa como caja contenedora auxiliar con estilos en línea -->
+                    <div style="background-color: #e6f4ea; padding: 1rem; border-left: 4px solid #137333; border-radius: 4px;">
+                        <p style="margin-bottom: 0;">Los museos son custodios del tiempo y portales a la imaginación humana, espacios sagrados donde el pasado y el presente dialogan en silencio a través del arte, la ciencia y la historia, recordándonos que cada objeto expuesto contiene un fragmento de nuestra propia identidad colectiva y un puente hacia el entendimiento universal..</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ==========================================
+                 ARTÍCULO 10: Carrusel Automático con JS (Independiente)
+                 ========================================== -->
+            <article>
+                <header>
+                    <h2>Imágenes de Museos </h2>
+                </header>
+                <p>Puedes encontrar imagenes de museos para conocerlos</p>
+                
+                <!-- Contenedor exclusivo con clase .auto-carousel -->
+                <div class="auto-carousel">
+                    <div class="auto-carousel-track">
+                        <div class="auto-slide active">
+                            <img src="https://tse2.mm.bing.net/th/id/OIP.faEf9rpepU-jpS1isxtc4gHaD4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="imgmuseo1">
+                        </div>
+                        <div class="auto-slide">
+                            <img src="https://th.bing.com/th/id/OIP.elnN-yRsVYYI7xbO7kE7yAHaE8?w=260&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"alt="imgmuseo2">
+                        </div>
+                        <div class="auto-slide">
+                            <img src="https://www.marthadebayle.com/wp-content/uploads/2023/04/museos-mas-importantes-del-mundo.jpg" alt="imgmuseo3">
+                        </div>
+                    </div>
+                    <button class="auto-carousel-btn prev" onclick="cambiarSlideAuto(-1)">&#10094;</button>
+                    <button class="auto-carousel-btn next" onclick="cambiarSlideAuto(1)">&#10095;</button>
+                </div>
+            </article>
+
+            <!-- ==========================================
+                 ARTÍCULO 11: Mapa interactivo con Iframe (Independiente)
+                 ========================================== -->
+            <article>
+                <header>
+                    <h2>Ubicación del Museo de Ciencias de Morelos</h2>
+                </header>
+                <p> Google Maps.</p>
+                <div class="map-container">
+                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5405.869046448123!2d-99.23195887532076!3d18.919019636355642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cddfae8bbc3263%3A0xf239eeb988de646b!2sMuseo%20de%20Ciencias%20de%20Morelos!5e1!3m2!1ses-419!2smx!4v1791520761240!5m2!1ses-419!2smx" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade" 
+                            title="Ubicación CBTis 166 Pablo Torres Burgos">
+                    </iframe>
+                </div>
+            </article>
+        </section>
+
+         
+
+        <!-- BARRA LATERAL (ASIDE) -->
+        <aside>
+            <h3>Sobre el Autor</h3>
+            <p><strong>Institución:</strong></p>
+            <p>CBTis 166 Pablo Torres Burgos</p>
+            <p><strong>Estudiante:</strong></p>
+            <p>López Acosta Elizabeth</p>
+            <p><strong>Grupo:</strong></p>
+            <p>3B PRO VESP</p>
+            <br>
+            <p>Este sitio web fue desarrollado como proyecto escolar con el propósito de resaltar la importancia de los museos como espacios para la preservación cultural, la educación y la historia.</p>
+            <br>
+            <p><strong>Fecha de publicación:</strong></p>
+            <p><time id="fecha-dinamica"></time></p>
+        </aside>
+    </main>
+
+    <!-- 4. PIE DE PÁGINA (FOOTER) -->
+    <footer id="contacto">
+        <p>&copy; 2026 Portal de Desarrollo Web. Todos los derechos reservados.</p>
+        <p>Autor: <strong>López Acosta Elizabeth</strong> | Grupo: <strong>3B PRO VESP</strong></p>
+        <address>
+            ¿Dudas o sugerencias? Escríbenos a <a href="museos@gmail.com">museos@gmail.com</a>
+        </address>
+    </footer>
+
+    <!-- Vinculación del script externo -->
+    <script src="script.js"></script>
+</body>
+</html>
